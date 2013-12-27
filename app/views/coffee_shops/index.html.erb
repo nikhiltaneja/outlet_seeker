@@ -1,15 +1,40 @@
-<h1>Coffee Shops</h1>
-
-<%= link_to "Add a coffee shop", new_coffee_shop_path, class: "new_coffee_shop" %>
-
-<table>
-  <% @coffee_shops.each do |coffee_shop| %>
+<%- model_class = CoffeeShop -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
     <tr>
-      <td><%= link_to coffee_shop.name, coffee_shop_path(coffee_shop) %></td>
-      <td><%= coffee_shop.address %></td>
-      <td><%= coffee_shop.city  %></td>
-      <td><%= coffee_shop.state %></td>
-      <td><%= coffee_shop.outlets %></td>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:address) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:state) %></th>
+      <th><%= model_class.human_attribute_name(:outlets) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @coffee_shops.each do |coffee_shop| %>
+      <tr>
+        <td><%= link_to coffee_shop.name, coffee_shop_path(coffee_shop) %></td>
+        <td><%= coffee_shop.address %></td>
+        <td><%= coffee_shop.city %></td>
+        <td><%= coffee_shop.state %></td>
+        <td><%= coffee_shop.outlets %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_coffee_shop_path(coffee_shop), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      coffee_shop_path(coffee_shop),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_coffee_shop_path,
+            :class => 'btn btn-primary' %>

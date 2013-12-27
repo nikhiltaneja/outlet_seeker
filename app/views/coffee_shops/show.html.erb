@@ -1,14 +1,29 @@
-<table>
-    <tr>
-      <td><%= @coffee_shop.name %></td>
-      <td><%= @coffee_shop.address %></td>
-      <td><%= @coffee_shop.city  %></td>
-      <td><%= @coffee_shop.state %></td>
-      <td><%= @coffee_shop.outlets %></td>
-    </tr>
-</table>
+<%- model_class = CoffeeShop -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<%= link_to "edit", edit_coffee_shop_path(@coffee_shop) %>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @coffee_shop.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @coffee_shop.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @coffee_shop.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
+  <dd><%= @coffee_shop.state %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:outlets) %>:</strong></dt>
+  <dd><%= @coffee_shop.outlets %></dd>
+</dl>
 
-
-<%= link_to "delete", coffee_shop_path(@coffee_shop), method: :delete, data: {confirm: "Really delete the coffee shop?"} %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              coffee_shops_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_coffee_shop_path(@coffee_shop), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              coffee_shop_path(@coffee_shop),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
