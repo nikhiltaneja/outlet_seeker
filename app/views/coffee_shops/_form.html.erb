@@ -1,0 +1,31 @@
+<%= form_for(@coffee_shop) do |f| %>
+  <ul>
+  <% @coffee_shop.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :outlets %><br />
+    <%= f.text_field :outlets %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

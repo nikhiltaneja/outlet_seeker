@@ -1,0 +1,14 @@
+<table>
+    <tr>
+      <td><%= @coffee_shop.name %></td>
+      <td><%= @coffee_shop.address %></td>
+      <td><%= @coffee_shop.city  %></td>
+      <td><%= @coffee_shop.state %></td>
+      <td><%= @coffee_shop.outlets %></td>
+    </tr>
+</table>
+
+<%= link_to "edit", edit_coffee_shop_path(@coffee_shop) %>
+
+
+<%= link_to "delete", coffee_shop_path(@coffee_shop), method: :delete, data: {confirm: "Really delete the coffee shop?"} %>

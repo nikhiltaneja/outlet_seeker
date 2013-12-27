@@ -1,0 +1,15 @@
+<h1>Coffee Shops</h1>
+
+<%= link_to "Add a coffee shop", new_coffee_shop_path, class: "new_coffee_shop" %>
+
+<table>
+  <% @coffee_shops.each do |coffee_shop| %>
+    <tr>
+      <td><%= link_to coffee_shop.name, coffee_shop_path(coffee_shop) %></td>
+      <td><%= coffee_shop.address %></td>
+      <td><%= coffee_shop.city  %></td>
+      <td><%= coffee_shop.state %></td>
+      <td><%= coffee_shop.outlets %></td>
+    </tr>
+  <% end %>
+</table>
