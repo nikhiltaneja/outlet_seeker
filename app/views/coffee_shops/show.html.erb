@@ -16,7 +16,7 @@
   <dd><%= @coffee_shop.outlets %></dd>
 </dl>
 
-<h3>Outlet Locations (<%= @coffee_shop.comments.size %>) </h3>
+<h3>Known Outlet Locations (<%= @coffee_shop.comments.size %>) </h3>
 <%= render partial: 'coffee_shops/comment', collection: @coffee_shop.comments%>
 
 <%= render partial: 'comments/form' %>
