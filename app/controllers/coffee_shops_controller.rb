@@ -6,6 +6,8 @@ class CoffeeShopsController < ApplicationController
 
   def show
     @coffee_shop = CoffeeShop.find(params[:id])
+    @comment = Comment.new
+    @comment.coffee_shop_id = @coffee_shop.id
   end
 
   def new

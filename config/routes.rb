@@ -1,7 +1,9 @@
 OutletSeeker::Application.routes.draw do
   root to: 'coffee_shops#index'
 
-  resources :coffee_shops
+  resources :coffee_shops do
+    resources :comments
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
