@@ -21,8 +21,11 @@ class CoffeeShopsController < ApplicationController
 
   def create
     @coffee_shop = CoffeeShop.new(coffee_shop_params)
-    @coffee_shop.save
-    redirect_to coffee_shop_path(@coffee_shop)
+    if @coffee_shop.save
+      redirect_to coffee_shop_path(@coffee_shop)
+    else
+      render :new
+    end
   end
 
   def edit
