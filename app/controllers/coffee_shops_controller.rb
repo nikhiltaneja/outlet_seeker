@@ -2,6 +2,11 @@ class CoffeeShopsController < ApplicationController
 
   def index
     @coffee_shops = CoffeeShop.all
+    @hash = Gmaps4rails.build_markers(@coffee_shops) do |shop, marker|
+      marker.lat shop.latitude
+      marker.lng shop.longitude
+      marker.title shop.name
+    end
   end
 
   def show
@@ -16,8 +21,11 @@ class CoffeeShopsController < ApplicationController
 
   def create
     @coffee_shop = CoffeeShop.new(coffee_shop_params)
-    @coffee_shop.save
-    redirect_to coffee_shop_path(@coffee_shop)
+    if @coffee_shop.save
+      redirect_to coffee_shop_path(@coffee_shop)
+    else
+      render :new
+    end
   end
 
   def edit
